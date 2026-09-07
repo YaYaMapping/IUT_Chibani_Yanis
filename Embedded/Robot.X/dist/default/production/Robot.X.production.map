@@ -18,7 +18,7 @@ Command:
   build/default/production/timer.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33EP512MU814.000029f8.00 \
+  -Tp33EP512MU814.0000fffc.00 \
   --stack=16 \
   --check-sections \
   --data-init \
