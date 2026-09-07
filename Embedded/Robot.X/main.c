@@ -25,5 +25,8 @@ int main(void) {
     
     // Boucle Principale
     while (1) {
+        LED_BLANCHE_1 = !LED_BLANCHE_1;
+        LED_ROUGE_1 = !LED_ROUGE_1;
+        LED_ORANGE_1 = !LED_ORANGE_1;
     } // fin main
 }
