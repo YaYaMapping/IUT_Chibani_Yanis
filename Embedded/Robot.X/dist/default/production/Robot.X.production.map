@@ -21,7 +21,7 @@ Command:
   build/default/production/PWM.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33EP512MU814.0000ebdc.00 \
+  -Tp33EP512MU814.0000cc34.00 \
   --stack=16 \
   --check-sections \
   --data-init \

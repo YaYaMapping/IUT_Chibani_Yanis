@@ -36,11 +36,11 @@ void PWMSetSpeed(float vitesseEnPourcents, int moteur)
  }
  if(moteur == MOTEUR_GAUCHE){
          if(vitesseEnPourcents >= 0) {
-        PDC1 = vitesseEnPourcents * PWMPER + talon;
-        SDC1 = talon;
-} else {
-        SDC1 = Abs(vitesseEnPourcents) * PWMPER + talon;
+        SDC1 = vitesseEnPourcents * PWMPER + talon;
         PDC1 = talon;
+} else {
+        PDC1 = Abs(vitesseEnPourcents) * PWMPER + talon;
+        SDC1 = talon;
     }
  }
 }
