@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "Robot.h"
 #include "PWM.h"
+#include "Toolbox.h"
 
 int main(void) {
     //Initialisation oscillateur
@@ -16,7 +17,9 @@ int main(void) {
     InitTimer1();
     InitTimer23();
     InitPWM();
-    PWMSetSpeed(0, 1); // PWMH : 10 = 12%, 50 = 52% donc c'est la valeur du PWM + 2% d'écart
+    PWMSetSpeedConsigne(0, 0);
+    
+    //PWMSetSpeed(0, 1); // PWMH : 10 = 12%, 50 = 52% donc c'est la valeur du PWM + 2% d'écart
                      // PWML : 10 = 2%; 50 = 2%  constant  
                      // MOTEUR 2 : courant augmente quand le moteur est stoppé instantanement car omega = 0, U = E + RI avec E = k * omega.
 

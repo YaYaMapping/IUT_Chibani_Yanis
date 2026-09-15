@@ -24,6 +24,7 @@ T1CONbits.TON = 1; // Enable Timer
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
 IFS0bits.T1IF = 0;
 LED_BLANCHE_1 = !LED_BLANCHE_1;
+
 }
 
 //Initialisation d?un timer 32 bits
@@ -46,7 +47,8 @@ T2CONbits.TON = 1; // Start 32-bit Timer
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
 IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 LED_ORANGE_1 = !LED_ORANGE_1;
-if(toggle == 0)
+PWMUpdateSpeed();
+/* if(toggle == 0)
 {
 PWMSetSpeed(10, MOTEUR_DROIT);
 PWMSetSpeed(10, MOTEUR_GAUCHE);
@@ -57,5 +59,5 @@ else
 PWMSetSpeed(-10, MOTEUR_DROIT);
 PWMSetSpeed(-10, MOTEUR_GAUCHE);
 toggle = 0;
-}
+} */
 }
