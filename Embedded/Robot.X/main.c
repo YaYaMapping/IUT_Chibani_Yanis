@@ -7,6 +7,11 @@
 #include "Robot.h"
 #include "PWM.h"
 #include "Toolbox.h"
+#include "ADC.h"
+
+int ADCValue0;
+int ADCValue1;
+int ADCValue2;
 
 int main(void) {
     //Initialisation oscillateur
@@ -16,26 +21,38 @@ int main(void) {
     InitIO();
     InitTimer1();
     InitTimer23();
-    InitPWM();
-    PWMSetSpeedConsigne(0, 0);
-    
+    InitADC1();
+
+    ADC1StartConversionSequence();
+
+
+
+    //InitPWM();
+    //PWMSetSpeedConsigne(0, 0);
     //PWMSetSpeed(0, 1); // PWMH : 10 = 12%, 50 = 52% donc c'est la valeur du PWM + 2% d'écart
-                     // PWML : 10 = 2%; 50 = 2%  constant  
-                     // MOTEUR 2 : courant augmente quand le moteur est stoppé instantanement car omega = 0, U = E + RI avec E = k * omega.
+    // PWML : 10 = 2%; 50 = 2%  constant  
+    // MOTEUR 2 : courant augmente quand le moteur est stoppé instantanement car omega = 0, U = E + RI avec E = k * omega.
 
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
     LED_ORANGE_1 = 1;
     LED_ROUGE_1 = 1;
     LED_VERTE_1 = 1;
-    
+
     LED_BLANCHE_2 = 1;
     LED_BLEUE_2 = 1;
     LED_ORANGE_2 = 1;
     LED_ROUGE_2 = 1;
     LED_VERTE_2 = 1;
-    
+
     // Boucle Principale
     while (1) {
+        if (ADCIsConversionFinished()) {
+            ADCClearConversionFinishedFlag();
+            unsigned int * result = ADCGetResult();
+            ADCValue0 = result[0];
+            ADCValue1 = result[1];
+            ADCValue2 = result[2];
+        }
     } // fin main
 }
