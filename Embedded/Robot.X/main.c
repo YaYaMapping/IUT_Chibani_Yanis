@@ -4,6 +4,8 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
+#include "Robot.h"
+#include "PWM.h"
 
 int main(void) {
     //Initialisation oscillateur
@@ -13,6 +15,9 @@ int main(void) {
     InitIO();
     InitTimer1();
     InitTimer23();
+    InitPWM();
+    PWMSetSpeed(0); // PWMH : 10 = 12%, 50 = 52% donc c'est la valeur du PWM + 2% d'écart
+                     // PWML : 10 = 2%; 50 = 2%  constant  
 
     LED_BLANCHE_1 = 1;
     LED_BLEUE_1 = 1;
