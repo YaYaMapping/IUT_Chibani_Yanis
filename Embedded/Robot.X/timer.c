@@ -1,6 +1,10 @@
 #include <xc.h>
 #include "timer.h"
 #include "IO.h"
+#include "PWM.h"
+
+unsigned char toggle = 0;
+
 //Initialisation d?un timer 16 bits
 void InitTimer1(void) {
 //Timer1 pour horodater les mesures (1ms)
@@ -42,4 +46,16 @@ T2CONbits.TON = 1; // Start 32-bit Timer
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
 IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
 LED_ORANGE_1 = !LED_ORANGE_1;
+if(toggle == 0)
+{
+PWMSetSpeed(10, MOTEUR_DROIT);
+PWMSetSpeed(10, MOTEUR_GAUCHE);
+toggle = 1;
+}
+else
+{
+PWMSetSpeed(-10, MOTEUR_DROIT);
+PWMSetSpeed(-10, MOTEUR_GAUCHE);
+toggle = 0;
+}
 }

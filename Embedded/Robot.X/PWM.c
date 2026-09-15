@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "IO.h"
 #include "PWM.h"
+#include "ToolBox.h"
 
 #define PWMPER 24.0
 
@@ -21,8 +22,25 @@ FCLCON2 = 0x0003; //éDsactive la gestion des faults
 PTCONbits.PTEN = 1;
 }
 double talon = 50;
-void PWMSetSpeed(float vitesseEnPourcents)
+void PWMSetSpeed(float vitesseEnPourcents, int moteur)
 {
-PDC1 = vitesseEnPourcents * PWMPER + talon;
-SDC1 = talon;
+    
+ if(moteur == MOTEUR_DROIT){
+    if(vitesseEnPourcents >= 0) {
+        PDC2 = vitesseEnPourcents * PWMPER + talon;
+        SDC2 = talon;
+} else {
+        SDC2 = Abs(vitesseEnPourcents) * PWMPER + talon;
+        PDC2 = talon;
+    }
+ }
+ if(moteur == MOTEUR_GAUCHE){
+         if(vitesseEnPourcents >= 0) {
+        PDC1 = vitesseEnPourcents * PWMPER + talon;
+        SDC1 = talon;
+} else {
+        SDC1 = Abs(vitesseEnPourcents) * PWMPER + talon;
+        PDC1 = talon;
+    }
+ }
 }
