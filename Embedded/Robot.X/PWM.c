@@ -3,6 +3,8 @@
 #include "PWM.h"
 #include "ToolBox.h"
 #include "Robot.h"
+#include "timer.h"
+#include "main.h"
 
 #define PWMPER 24.0
 
@@ -23,8 +25,8 @@ void InitPWM(void) {
     PTCONbits.PTEN = 1;
 }
 double talon = 50;
-float acceleration = 10;
-
+float acceleration = 5;
+//
 //void PWMSetSpeed(float vitesseEnPourcents, int moteur) {
 //
 //    if (moteur == MOTEUR_DROIT) {
